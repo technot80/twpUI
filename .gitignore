@@ -1,0 +1,14 @@
+.gradle/
+build/
+**/build/
+out/
+*.class
+*.log
+*.jar
+*.p12
+*.jks
+*.keystore
+.idea/
+*.iml
+.vscode/
+.DS_Store
