@@ -1,5 +1,7 @@
 # twpUI
 
+**Work in progress. Do not use or test in production.**
+
 Control multiple Paper/Folia servers from one JavaFX app. This repo contains a Minecraft plugin, a desktop app, and a shared protocol module.
 
 ## Features
