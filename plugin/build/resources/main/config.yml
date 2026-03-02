@@ -1,0 +1,27 @@
+connection:
+  host: 0.0.0.0
+  port: 8765
+  api-key: "change-me"
+  tls:
+    enabled: true
+    keystore-path: "keystore.p12"
+    keystore-password: "change-me"
+    key-alias: "servercontroller"
+logging:
+  level: INFO
+  buffer-size: 1000
+metrics:
+  interval-seconds: 5
+updates:
+  cache-minutes: 60
+  spigot-resources:
+    # Example:
+    # EssentialsX: 9089
+control:
+  file: ".server-control"
+  heartbeat-file: ".server-heartbeat"
+  status-file: ".server-status"
+discovery:
+  enabled: true
+  port: 8766
+  interval-seconds: 10
