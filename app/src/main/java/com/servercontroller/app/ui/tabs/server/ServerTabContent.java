@@ -48,17 +48,9 @@ public class ServerTabContent {
 
     private VBox buildContent(ServerTabViewModel viewModel) {
         VBox container = new VBox(16);
+
         MetricsPanel metricsPanel = new MetricsPanel();
         metricsPanel.bind(viewModel);
-
-        PluginMetricsPanel pluginMetricsPanel = new PluginMetricsPanel();
-        pluginMetricsPanel.bind(viewModel.pluginMetrics());
-
-        PluginPanel pluginPanel = new PluginPanel();
-        pluginPanel.table().setItems(viewModel.plugins());
-        pluginPanel.checkUpdatesButton().setOnAction(event -> viewModel.checkUpdates());
-        pluginPanel.setOnUpdate(viewModel::downloadUpdate);
-        viewModel.setUpdateInfoListener((name, info) -> pluginPanel.updateInfo(name, info.hasUpdate(), info.downloadUrl()));
 
         ServerLogPanel logPanel = new ServerLogPanel();
         viewModel.logs().addListener((javafx.collections.ListChangeListener<? super LogMessage>) change -> {
@@ -80,12 +72,21 @@ public class ServerTabContent {
         controlPanel.restartButton().setOnAction(event -> viewModel.restart());
         controlPanel.stopButton().setOnAction(event -> viewModel.stop());
 
+        PluginMetricsPanel pluginMetricsPanel = new PluginMetricsPanel();
+        pluginMetricsPanel.bind(viewModel.pluginMetrics());
+
+        PluginPanel pluginPanel = new PluginPanel();
+        pluginPanel.table().setItems(viewModel.plugins());
+        pluginPanel.checkUpdatesButton().setOnAction(event -> viewModel.checkUpdates());
+        pluginPanel.setOnUpdate(viewModel::downloadUpdate);
+        viewModel.setUpdateInfoListener((name, info) -> pluginPanel.updateInfo(name, info.hasUpdate(), info.downloadUrl()));
+
         container.getChildren().addAll(
                 metricsPanel.node(),
-                pluginMetricsPanel.node(),
-                pluginPanel.node(),
                 logPanel.node(),
-                controlPanel.node()
+                controlPanel.node(),
+                pluginMetricsPanel.node(),
+                pluginPanel.node()
         );
         VBox.setVgrow(logPanel.node(), Priority.ALWAYS);
         return container;

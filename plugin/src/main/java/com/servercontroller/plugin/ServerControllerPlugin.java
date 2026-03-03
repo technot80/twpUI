@@ -11,7 +11,10 @@ import com.servercontroller.plugin.net.WebSocketServerService;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class ServerControllerPlugin extends JavaPlugin {
@@ -30,6 +33,7 @@ public class ServerControllerPlugin extends JavaPlugin {
 
         this.config = PluginConfig.from(getConfig());
         this.logBuffer = new LogBuffer(config.logging().bufferSize(), LogLevel.fromString(config.logging().level()));
+        preloadLatestLog(logBuffer, Bukkit.getWorldContainer().toPath().resolve("logs").resolve("latest.log"));
         Path serverRoot = Bukkit.getWorldContainer().toPath();
         this.controlFileService = new ControlFileService(serverRoot, config.control());
         this.metricsService = new MetricsService(this);
@@ -61,6 +65,22 @@ public class ServerControllerPlugin extends JavaPlugin {
         }
         if (discoveryBroadcaster != null) {
             discoveryBroadcaster.stop();
+        }
+    }
+
+    private void preloadLatestLog(LogBuffer buffer, Path logPath) {
+        if (buffer == null || logPath == null) {
+            return;
+        }
+        if (!Files.exists(logPath)) {
+            return;
+        }
+        try {
+            List<String> lines = Files.readAllLines(logPath);
+            for (String line : lines) {
+                buffer.add(LogBuffer.parseLine(line));
+            }
+        } catch (IOException ignored) {
         }
     }
 }

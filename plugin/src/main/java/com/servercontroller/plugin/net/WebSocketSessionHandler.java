@@ -95,6 +95,12 @@ public class WebSocketSessionHandler extends SimpleChannelInboundHandler<TextWeb
     }
 
     @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+        sessions.remove(ctx);
+        ctx.close();
+    }
+
+    @Override
     protected void channelRead0(ChannelHandlerContext ctx, TextWebSocketFrame msg) {
         try {
             Message message = Protocol.decode(msg.text());
