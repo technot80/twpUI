@@ -14,6 +14,8 @@ public class MetricsPanel {
     private final Label msptValue;
     private final Label cpuValue;
     private final Label memoryValue;
+    private final Label playersValue;
+    private final Label entitiesValue;
 
     public MetricsPanel() {
         root = new VBox(12);
@@ -29,13 +31,15 @@ public class MetricsPanel {
         msptValue = new Label("-");
         cpuValue = new Label("-");
         memoryValue = new Label("-");
+        playersValue = new Label("-");
+        entitiesValue = new Label("-");
 
         grid.add(metricCard("TPS", tpsValue), 0, 0);
         grid.add(metricCard("MSPT", msptValue), 1, 0);
         grid.add(metricCard("CPU", cpuValue), 2, 0);
         grid.add(metricCard("Memory", memoryValue), 0, 1);
-        grid.add(metricCard("Players", new Label("-")), 1, 1);
-        grid.add(metricCard("Entities", new Label("-")), 2, 1);
+        grid.add(metricCard("Players", playersValue), 1, 1);
+        grid.add(metricCard("Entities", entitiesValue), 2, 1);
 
         root.getChildren().addAll(title, grid);
     }
@@ -49,6 +53,8 @@ public class MetricsPanel {
         msptValue.textProperty().bind(viewModel.msptProperty());
         cpuValue.textProperty().bind(viewModel.cpuProperty());
         memoryValue.textProperty().bind(viewModel.memoryProperty());
+        playersValue.textProperty().bind(viewModel.playersProperty());
+        entitiesValue.textProperty().bind(viewModel.entitiesProperty());
     }
 
     private HBox metricCard(String label, Label valueNode) {

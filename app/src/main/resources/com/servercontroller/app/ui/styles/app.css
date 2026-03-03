@@ -1,4 +1,4 @@
-:root {
+.root {
     -sc-bg: #0f141a;
     -sc-panel: #171f27;
     -sc-panel-alt: #1f2a35;
@@ -6,9 +6,6 @@
     -sc-accent-2: #e76f51;
     -sc-text: #f2f2f2;
     -sc-muted: #9aa6b2;
-}
-
-.root {
     -fx-font-family: "IBM Plex Sans";
     -fx-background-color: linear-gradient(to bottom right, #0f141a, #19232e);
 }

@@ -7,6 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.Priority;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,6 +44,9 @@ public class ServerLogPanel {
         logArea = new TextArea();
         logArea.setEditable(false);
         logArea.getStyleClass().add("log-area");
+        logArea.setPrefRowCount(14);
+        logArea.setWrapText(true);
+        VBox.setVgrow(logArea, Priority.ALWAYS);
 
         root.getChildren().addAll(title, filters, logArea);
     }

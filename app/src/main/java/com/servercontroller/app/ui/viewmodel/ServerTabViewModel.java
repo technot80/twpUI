@@ -31,6 +31,8 @@ public class ServerTabViewModel implements ServerMessageListener {
     private final StringProperty mspt = new SimpleStringProperty("-");
     private final StringProperty cpu = new SimpleStringProperty("-");
     private final StringProperty memory = new SimpleStringProperty("-");
+    private final StringProperty players = new SimpleStringProperty("-");
+    private final StringProperty entities = new SimpleStringProperty("-");
 
     private final ObservableList<PluginListMessage.PluginSummary> plugins = FXCollections.observableArrayList();
     private final ObservableList<LogMessage> logs = FXCollections.observableArrayList();
@@ -102,6 +104,14 @@ public class ServerTabViewModel implements ServerMessageListener {
         return memory;
     }
 
+    public StringProperty playersProperty() {
+        return players;
+    }
+
+    public StringProperty entitiesProperty() {
+        return entities;
+    }
+
     public ObservableList<PluginListMessage.PluginSummary> plugins() {
         return plugins;
     }
@@ -124,6 +134,8 @@ public class ServerTabViewModel implements ServerMessageListener {
                 mspt.set(String.format("%.2f", metrics.mspt()));
                 cpu.set(String.format("%.1f%%", metrics.cpuUsage()));
                 memory.set(metrics.usedMemoryMb() + " / " + metrics.maxMemoryMb() + " MB");
+                players.set(String.valueOf(metrics.playerCount()));
+                entities.set(String.valueOf(metrics.entityCount()));
                 updatePluginMetrics(metrics.pluginMetrics());
             } else if (message instanceof PluginListMessage list) {
                 plugins.setAll(list.plugins());

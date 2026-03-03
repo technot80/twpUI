@@ -12,3 +12,7 @@ out/
 *.iml
 .vscode/
 .DS_Store
+.classpath
+.project
+.settings/
+**/bin/

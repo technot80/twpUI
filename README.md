@@ -39,6 +39,20 @@ Control multiple Paper/Folia servers from one JavaFX app. This repo contains a M
 "C:\Users\torin\Downloads\gradle-9.3.1-all\gradle-9.3.1\bin\gradle" :app:run
 ```
 
+## One-Click Windows App (App Image)
+
+Generate a self-contained app image with `jpackage`:
+
+```bash
+"C:\Users\torin\Downloads\gradle-9.3.1-all\gradle-9.3.1\bin\gradle" :app:jpackageAppImage
+```
+
+Run it from:
+
+```
+app\build\jpackage\twpUI\twpUI.exe
+```
+
 ## Install the Plugin
 
 ```bash

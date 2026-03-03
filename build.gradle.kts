@@ -1,3 +1,5 @@
+import org.gradle.jvm.tasks.Jar
+
 plugins {
     java
 }
@@ -16,4 +18,8 @@ java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(21))
     }
+}
+
+tasks.named<Jar>("jar") {
+    enabled = false
 }

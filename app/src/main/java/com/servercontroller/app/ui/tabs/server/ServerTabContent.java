@@ -87,6 +87,7 @@ public class ServerTabContent {
                 logPanel.node(),
                 controlPanel.node()
         );
+        VBox.setVgrow(logPanel.node(), Priority.ALWAYS);
         return container;
     }
 }
