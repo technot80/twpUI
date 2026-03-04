@@ -30,13 +30,13 @@ Control multiple Paper/Folia servers from one JavaFX app. This repo contains a M
 ## Build
 
 ```bash
-"C:\Users\torin\Downloads\gradle-9.3.1-all\gradle-9.3.1\bin\gradle" build
+gradle build
 ```
 
 ## Run the App
 
 ```bash
-"C:\Users\torin\Downloads\gradle-9.3.1-all\gradle-9.3.1\bin\gradle" :app:run
+gradle :app:run
 ```
 
 ## One-Click Windows App (App Image)
@@ -44,7 +44,7 @@ Control multiple Paper/Folia servers from one JavaFX app. This repo contains a M
 Generate a self-contained app image with `jpackage`:
 
 ```bash
-"C:\Users\torin\Downloads\gradle-9.3.1-all\gradle-9.3.1\bin\gradle" :app:jpackageAppImage
+gradle :app:jpackageAppImage
 ```
 
 Run it from:
@@ -56,7 +56,7 @@ app\build\jpackage\twpUI\twpUI.exe
 ## Install the Plugin
 
 ```bash
-"C:\Users\torin\Downloads\gradle-9.3.1-all\gradle-9.3.1\bin\gradle" :plugin:build
+gradle :plugin:build
 ```
 
 Copy the jar from `plugin/build/libs/` to your server `plugins/` folder.
